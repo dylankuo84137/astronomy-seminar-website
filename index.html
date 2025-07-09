@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天文、幾何與人智學研討會 - Dr. Oliver Conradt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f3f0 0%, #e8e6e3 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="0.8" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .date-location {
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        nav {
+            background: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f39c12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section {
+            display: none;
+            padding: 2rem;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #f39c12, #e67e22);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Home Section */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-image {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border: 3px solid #f39c12;
+        }
+
+        .cosmic-diagram {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background: radial-gradient(circle, #1a365d 0%, #2c5282 100%);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cosmic-diagram::before {
+            content: '✦';
+            font-size: 4rem;
+            color: #f39c12;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.5; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1.1); }
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #f39c12;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-card h3 {
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Speaker Section */
+        .speaker-profile {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .speaker-image {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+
+        .speaker-avatar {
+            width: 200px;
+            height: 200px;
+            background: #1a365d;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .speaker-info h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .speaker-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .speaker-info li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .speaker-info li:before {
+            content: '◆';
+            color: #f39c12;
+            margin-right: 0.5rem;
+        }
+
+        /* Schedule Sections */
+        .day-schedule {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #f39c12;
+        }
+
+        .day-title {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.8rem;
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .schedule-table th {
+            background: #1a365d;
+            color: white;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .topic-highlight {
+            font-weight: bold;
+            color: #1a365d;
+        }
+
+        /* Resources Section */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .resource-category {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 5px solid #f39c12;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resource-category h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .download-link {
+            display: block;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background: #e9ecef;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: background 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #f39c12;
+            color: white;
+        }
+
+        /* Comments Section */
+        .comments-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .comment-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1a365d;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .comment {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #1a365d;
+        }
+
+        .comment-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .hero-grid,
+            .speaker-profile {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="title">天文、幾何與人智學研討會</h1>
+                <p class="subtitle">Seminar on Astronomy, Geometry and Anthroposophy</p>
+                <div class="date-location">
+                    2025年7月7-9日 | 主講：Dr. Oliver Conradt
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-link active" data-section="home">首頁</a>
+                <a href="#" class="nav-link" data-section="speaker">講師介紹</a>
+                <a href="#" class="nav-link" data-section="day1">第一天課程</a>
+                <a href="#" class="nav-link" data-section="day2">第二天課程</a>
+                <a href="#" class="nav-link" data-section="day3">第三天課程</a>
+                <a href="#" class="nav-link" data-section="topics">主題分類</a>
+                <a href="#" class="nav-link" data-section="resources">資源下載</a>
+                <a href="#" class="nav-link" data-section="discussion">討論分享</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <h2>研討會概覽</h2>
+                <div class="hero-text" style="max-width: 800px; margin: 2rem auto; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+                    <p>歡迎參加這場結合天文學、投影幾何與人智學的深度研討會。在三天的學習旅程中，我們將探索宇宙的韻律、幾何的美妙，以及人類意識與宇宙的深層連結。</p>
+                    <p>由來自瑞士哥德學院的 Dr. Oliver Conradt 博士親自指導，這是一個難得的機會，讓華德福教師們深入理解史代納教育理念中科學與靈性的統一。</p>
+                </div>
+
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <h3>🌞 太陽的三種韻律</h3>
+                        <p><strong>日韻律：</strong>太陽日(24小時)與恆星日(23小時56分4秒)的差異約4分鐘<br>
+                        <strong>年韻律：</strong>太陽經歷黃道十二星座一周，每日4分鐘差異累積成年度循環<br>
+                        <strong>柏拉圖年：</strong>春分點歲差運動，25,920年完成一個完整週期</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>🌙 月亮的五種節奏與星智學</h3>
+                        <p><strong>朔望月：</strong>29.53天（月相週期）<br>
+                        <strong>恆星月：</strong>27.32天（相對恆星）<br>
+                        <strong>回歸月、交點月、近點月：</strong>各有獨特週期<br>
+                        探索格魯尼恩魚(Grunion Fish)和帕洛羅蠕蟲的月相繁殖週期，理解「月亮球體」概念</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>📐 投影幾何：無限的概念</h3>
+                        <p><strong>無限遠點：</strong>每條直線有一個無限遠點<br>
+                        <strong>無限遠線：</strong>每個平面有一條無限遠線<br>
+                        <strong>無限遠平面：</strong>空間中有一個無限遠平面<br>
+                        體驗投影平面的單面性，如莫比烏斯環般穿越無限的幾何轉化</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>🧠 GA17《靈性世界的門檻》</h3>
+                        <p><strong>冥想四步驟：</strong><br>
+                        1. 選擇思考對象<br>
+                        2. 反覆深入思考<br>
+                        3. 與思考共同生活<br>
+                        4. 產生靈性接觸<br>
+                        從「我思維」轉化到「宇宙在我之內思維」的深刻體驗</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>🏫 華德福教學智慧</h3>
+                        <p><strong>從整體到部分：</strong>加法教學從12分解、極限概念從目標開始<br>
+                        <strong>接受的重要性：</strong>學習前先「接受」規則，避免初期抗拒<br>
+                        <strong>數學的本質：</strong>介於靈性藝術與死亡語言之間的獨特存在<br>
+                        讓學生感受宇宙的大秩序與普遍規律</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>🌌 天體物理學與人智學對話</h3>
+                        <p><strong>太陽的雙重本質：</strong>天體物理學視太陽為熾熱氣體球，史代納描述太陽內部為真空狀態<br>
+                        <strong>彗星的真實面貌：</strong>彗核極小且極暗，我們看到的是太陽驅動的氣化「過程」<br>
+                        <strong>人類的宇宙連結：</strong>物質身體與地球相連，以太身與星辰世界連結</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Speaker Section -->
+            <section id="speaker" class="section">
+                <h2>講師介紹</h2>
+                <div class="speaker-profile">
+                    <div class="speaker-image">
+                        <div class="speaker-avatar">OC</div>
+                        <h3>Dr. Oliver Conradt</h3>
+                        <p>哥德學院數學與天文學部主任</p>
+                    </div>
+                    <div class="speaker-info">
+                        <h3>學術背景與成就</h3>
+                        <ul>
+                            <li><strong>教育背景：</strong>1970年生於瑞士多納赫，自小接受Rudolf Steiner School Basel教育</li>
+                            <li><strong>學位：</strong>巴塞爾大學數學與物理雙學士，博士論文專攻「Space and Counterspace in Mathematical Physics」</li>
+                            <li><strong>教學經歷：</strong>Fachhochschule beider Basel數學講師、德國漢堡中學數理教師</li>
+                            <li><strong>現職：</strong>自2005年起擔任Goetheanum人智科學學校數學與天文部門主任</li>
+                            <li><strong>研究領域：</strong>投影幾何與克利福德代數、人智學視角下的天文學、天體物理與靈性結構對話</li>
+                            <li><strong>實踐工作：</strong>經營Goetheanum克卜勒天文台，設計針對教師與公眾的觀測課程</li>
+                            <li><strong>學術成果：</strong>著有《Mathematical Physics in Space and Counterspace》等專書</li>
+                            <li><strong>特殊研究：</strong>近兩年致力於用投影幾何解釋順勢療法的科學效應</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day 1 Section -->
+            <section id="day1" class="section">
+                <h2>第一天課程 - 7月7日</h2>
+                <div class="day-schedule">
+                    <div class="day-title">太陽、月亮與行星（天文學基礎）</div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>時間</th>
+                                <th>課程內容</th>
+                                <th>活動形式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09:00-10:30</td>
+                                <td>
+                                    <span class="topic-highlight">太陽、月亮與行星（天文講解）</span><br>
+                                    太陽的三種韻律：日韻律、年韻律、柏拉圖年<br>
+                                    不同地理位置對太陽韻律的體驗差異<br>
+                                    討論：我們今天在哪裡、如何教授天文？<br>
+                                    <a href="https://docs.google.com/document/d/1RysyxyFmtakT63su3nFEkfymH_vYl4DqUEfw1-iVQ0A" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>講座 + 討論</td>
+                            </tr>
+                            <tr>
+                                <td>10:45-12:15</td>
+                                <td>
+                                    <span class="topic-highlight">投影幾何練習</span><br>
+                                    無限與對偶性的概念探究<br>
+                                    動態變換三角形實作練習<br>
+                                    <a href="https://docs.google.com/document/d/1WzgZExm9ns-DY4yp2CG8nPNXI2dQ1KnRqQxNYGpnKR4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>實作繪圖</td>
+                            </tr>
+                            <tr>
+                                <td>13:30-15:00</td>
+                                <td>
+                                    <span class="topic-highlight">GA17《靈性世界的門檻》第1章</span><br>
+                                    思維作為靈魂生命之流中的小島<br>
+                                    靈魂對思維的自然信任<br>
+                                    <a href="https://docs.google.com/document/d/1XO4FibLhKeEasWX3MpEjv27yE81OUjFStmZWA5fhxf8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>分組研讀討論</td>
+                            </tr>
+                            <tr>
+                                <td>15:15-16:00</td>
+                                <td>
+                                    <span class="topic-highlight">教學實踐討論</span><br>
+                                    我們今天如何在華德福學校教授數學？<br>
+                                    分享與反思<br>
+                                    <a href="https://docs.google.com/document/d/1HeO0SzwLSnd_eIqtqvwGXvP_gj6VBPPCr5SdqDufJMs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>經驗分享</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-2">
+                    <h3>重點內容摘要</h3>
+                    <div class="highlight-card">
+                        <h4>太陽的三種韻律</h4>
+                        <ul>
+                            <li><strong>日韻律：</strong>太陽日(24小時)與恆星日(23小時56分4秒)的差異約4分鐘</li>
+                            <li><strong>年韻律：</strong>太陽經歷黃道十二星座一周，每日4分鐘差異累積成年度循環</li>
+                            <li><strong>柏拉圖年：</strong>春分點每年移動20分鐘，約72年移動1度，25,920年完成一圈</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>投影幾何練習重點</h4>
+                        <ul>
+                            <li><strong>基礎設定：</strong>在紙上建立垂直線、水平線與等腰三角形</li>
+                            <li><strong>變換規則：</strong>頂點沿直線移動、等腰邊繞基準點旋轉、底邊平行移動</li>
+                            <li><strong>無限概念：</strong>三角形變換接近極限時的幾何行為觀察</li>
+                            <li><strong>數學極限：</strong>可以無限接近但永遠無法真正到達的狀態</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>GA17《靈性世界的門檻》核心概念</h4>
+                        <ul>
+                            <li><strong>思維之島：</strong>思維如同靈魂生命之流中的穩定小島</li>
+                            <li><strong>自然信任：</strong>靈魂對思維有與生俱來的信任，是求知努力的基礎</li>
+                            <li><strong>宇宙本質：</strong>思維具有宇宙本質，能將個體與宇宙連結</li>
+                            <li><strong>健康節奏：</strong>在自身中與從自身中解脫的狀態轉換</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>教學實踐討論要點</h4>
+                        <ul>
+                            <li><strong>接受的重要性：</strong>學習前先「接受」規則，避免初期抗拒阻礙深入學習</li>
+                            <li><strong>數學的本質：</strong>介於靈性藝術與死亡語言之間的獨特存在</li>
+                            <li><strong>恰當比喻：</strong>使用適當比喻建立橋樑，引導學生理解深層概念</li>
+                            <li><strong>全班融入：</strong>讓整個班級感受到課程品質，體驗探索的樂趣</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day 2 Section -->
+            <section id="day2" class="section">
+                <h2>第二天課程 - 7月8日</h2>
+                <div class="day-schedule">
+                    <div class="day-title">人類生活於行星星界之中（星智學理論探討）</div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>時間</th>
+                                <th>課程內容</th>
+                                <th>活動形式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09:00-10:30</td>
+                                <td>
+                                    <span class="topic-highlight">人類生活於行星星界之中（星智學）</span><br>
+                                    行星節奏與人類生命週期的對應<br>
+                                    月亮節奏的多重層面<br>
+                                    <a href="https://docs.google.com/document/d/1bdPliqYHeZPgY93qwtmu601y9MFOIxISFLFLmDh9Clg" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>講座 + 討論</td>
+                            </tr>
+                            <tr>
+                                <td>10:45-12:15</td>
+                                <td>
+                                    <span class="topic-highlight">投影幾何練習（進階）</span><br>
+                                    球形幾何與投影幾何的比較<br>
+                                    點達到無限的轉變概念<br>
+                                    <a href="https://docs.google.com/document/d/1nqIYZuq9NOuPiKptHyV_kcNxCoxDVrKzvhFmuYtW9zs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>實作繪圖</td>
+                            </tr>
+                            <tr>
+                                <td>13:30-15:00</td>
+                                <td>
+                                    <span class="topic-highlight">GA17《靈性世界的門檻》第1章（續）</span><br>
+                                    思維的宇宙本質<br>
+                                    從「我思維」到「某種東西在我之內思維」<br>
+                                    <a href="https://docs.google.com/document/d/1iI4tDnIP2toIzx74U03sk68GHVBfpFXrJ5gJVvpqlj4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>深度討論</td>
+                            </tr>
+                            <tr>
+                                <td>15:15-16:00</td>
+                                <td>
+                                    <span class="topic-highlight">討論與分享</span><br>
+                                    數學教育的本質探討<br>
+                                    順勢療法與幾何學的關聯思考<br>
+                                    <a href="https://docs.google.com/document/d/1RTp4Y2K435cgEwKLlDrCMSoBOIt0-_1ChX0i1lSJkw8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>開放討論</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-2">
+                    <h3>重點內容摘要</h3>
+                    <div class="highlight-card">
+                        <h4>星智學：人類生活於行星星界之中</h4>
+                        <ul>
+                            <li><strong>月亮節奏類型：</strong>朔望月(29.53天)、恆星月(27.32天)、回歸月、交點月、近點月</li>
+                            <li><strong>地理差異影響：</strong>不同緯度對太陽和月亮韻律的體驗差異</li>
+                            <li><strong>生物節奏：</strong>鯷魚(Grunion Fish)和Palolo蠕蟲的月相繁殖週期</li>
+                            <li><strong>月亮球體概念：</strong>地球及所有生命都生活在月亮的影響範圍內</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>投影幾何進階：無限遠點、線、面</h4>
+                        <ul>
+                            <li><strong>無限遠點：</strong>三角形變形中頂點消失的「間隙」轉化為點</li>
+                            <li><strong>無限遠線：</strong>每個平面包含一條無限遠線，含所有該平面的無限遠點</li>
+                            <li><strong>無限遠平面：</strong>包含所有無限遠線和點的空間概念</li>
+                            <li><strong>投影平面特性：</strong>單面性，類似莫比烏斯環，穿越無限後方向改變</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>GA17進階：思維與靈魂的深層關係</h4>
+                        <ul>
+                            <li><strong>冥想的四步驟：</strong>選擇思考→反覆深入→與思考共同生活→產生靈性接觸</li>
+                            <li><strong>思考的轉化：</strong>從「我思維」到「宇宙在我之內思維」</li>
+                            <li><strong>觸覺比喻：</strong>冥想體驗靈性世界如在黑暗中用觸覺感知</li>
+                            <li><strong>靈魂作為舞台：</strong>個體是宇宙思維展現的平台</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>心智學與無限概念的哲學延伸</h4>
+                        <ul>
+                            <li><strong>月亮球體：</strong>作為進入心智學的切入點，超越物質界限</li>
+                            <li><strong>無限的不可見性：</strong>投影幾何中的無限是理解非物質存在的入門</li>
+                            <li><strong>中西方農業文化：</strong>月亮與太陽在不同文化中的農業應用</li>
+                            <li><strong>複數世界類比：</strong>數學中複數概念與「不可見事物」的連結</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day 3 Section -->
+            <section id="day3" class="section">
+                <h2>第三天課程 - 7月9日</h2>
+                <div class="day-schedule">
+                    <div class="day-title">宇宙觀點綜合（天體物理學與人智學對話）</div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>時間</th>
+                                <th>課程內容</th>
+                                <th>活動形式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09:00-10:30</td>
+                                <td>
+                                    <span class="topic-highlight">從天體物理學與人智學觀點看我們的宇宙</span><br>
+                                    太陽的物理特性與神秘本質<br>
+                                    彗星現象與生命週期的深度探討<br>
+                                    人智學對宇宙與人類關係的洞見<br>
+                                    <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>綜合講座</td>
+                            </tr>
+                            <tr>
+                                <td>10:45-12:15</td>
+                                <td>
+                                    <span class="topic-highlight">投影幾何練習（進階探討）</span><br>
+                                    三條直線分割平面的區域數量<br>
+                                    無限遠概念在投影幾何中的應用<br>
+                                    投影平面與球面幾何的本質差異<br>
+                                    <a href="https://docs.google.com/document/d/1SE_taTHvtpCrAFy7HUse5EHfqi3gzUGCZ0k-ghKXbW4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>實作練習</td>
+                            </tr>
+                            <tr>
+                                <td>13:30-16:00</td>
+                                <td>
+                                    <span class="topic-highlight">課程總結與華德福教學分享</span><br>
+                                    投影幾何的核心概念總結<br>
+                                    華德福數學教學方法的應用<br>
+                                    從整體到部分的教學原則<br>
+                                    <a href="https://docs.google.com/document/d/1qqVNu5mGT-wGuV4ux96LoHnJKnG8ZJB0UK00R25eaQ0" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem;">📋 會議記錄</a>
+                                </td>
+                                <td>討論與分享</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-2">
+                    <h3>重點內容摘要</h3>
+                    <div class="highlight-card">
+                        <h4>天體物理學與人智學的對話</h4>
+                        <ul>
+                            <li><strong>太陽的雙重本質：</strong>天體物理學視太陽為熾熱氣體球（表面5800K，中心數百萬度），史代納則描述太陽內部為「比沒有還少」的真空狀態</li>
+                            <li><strong>彗星的真實面貌：</strong>彗核極小且非常暗（67P彗星反射率僅4%），我們看到的是太陽驅動的氣化「過程」而非實體</li>
+                            <li><strong>人類的宇宙連結：</strong>物質身體與地球相連，以太身與星辰世界連結，自我意識與地球中心相關</li>
+                            <li><strong>現代人的感官麻痺：</strong>過強的感官印象阻礙了對宇宙連結的感受，需要重新激活內在思想之光</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>投影幾何的深度理解</h4>
+                        <ul>
+                            <li><strong>區域分割的奧秘：</strong>三條直線在投影平面分割成4個區域（而非歐幾里得的7個），關鍵在於無限遠概念</li>
+                            <li><strong>無限遠的三層結構：</strong>每條線有一個無限遠點、每個平面有一條無限遠線、空間有一個無限遠平面</li>
+                            <li><strong>投影平面的單面性：</strong>類似莫比烏斯環，但投影平面是扁平且無限的</li>
+                            <li><strong>位置幾何的本質：</strong>投影幾何關注點與線的相對位置，而非長度或角度的度量</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>華德福教學的智慧</h4>
+                        <ul>
+                            <li><strong>從整體到部分：</strong>加法教學從12分解為不同部分，極限概念從明確目標開始學習</li>
+                            <li><strong>圓錐曲線的整體性：</strong>橢圓、拋物線、雙曲線本質為同一形狀的不同顯現</li>
+                            <li><strong>幾何的美感場域：</strong>幾何教學能讓學生突然對數學產生興趣，心魂喜歡這種美的體驗</li>
+                            <li><strong>無限的普在性：</strong>藝術家每秒都在與無限連結，而數學教師需要更多時間才能感知無限</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card mt-2">
+                        <h4>研討會的核心成果</h4>
+                        <ul>
+                            <li><strong>意識心魂的脈衝：</strong>投影幾何體現了「意識心魂」的脈衝，與華德福的教學理念深度連結</li>
+                            <li><strong>未來的任務：</strong>將投影幾何從合成方式（繪圖）發展到解析方式（數字與計算）</li>
+                            <li><strong>教學的藝術：</strong>讓學生感受到事物背後的大秩序與普遍規律</li>
+                            <li><strong>跨學科的應用：</strong>整體性教學原則適用於數學、歷史等各學科</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Topics Section -->
+            <section id="topics" class="section">
+                <h2>主題分類</h2>
+                
+                <div class="resource-grid">
+                    <div class="resource-category">
+                        <h3>🌟 天文學與星智學</h3>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+                            從科學觀測到靈性洞察，探索宇宙韻律與人類生命的深層連結
+                        </p>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌞 太陽的三種韻律</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 日韻律：太陽日與恆星日的4分鐘差異</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 年韻律：太陽經歷黃道十二星座的循環</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 柏拉圖年：25,920年的歲差運動週期</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1RysyxyFmtakT63su3nFEkfymH_vYl4DqUEfw1-iVQ0A" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天講座記錄</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌙 月亮的五種節奏與星智學</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 朔望月、恆星月、回歸月、交點月、近點月</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 格魯尼恩魚與帕洛羅蠕蟲的月相繁殖週期</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 月亮球體概念：地球生命與月亮影響範圍</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1bdPliqYHeZPgY93qwtmu601y9MFOIxISFLFLmDh9Clg" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天講座記錄</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌌 天體物理學與人智學對話</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 太陽的雙重本質：熾熱氣體球 vs 真空狀態</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 彗星現象：太陽驅動的氣化過程</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 人類的宇宙連結：物質身體與以太身</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天講座記錄</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-category">
+                        <h3>📐 投影幾何</h3>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+                            通過動態幾何探索無限概念，體驗意識心魂的數學表達
+                        </p>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🔺 基礎變換練習</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 等腰三角形的動態變換</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 無限遠點的轉化體驗</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 數學極限的幾何意義</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1WzgZExm9ns-DY4yp2CG8nPNXI2dQ1KnRqQxNYGpnKR4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天幾何練習</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌐 無限遠的三層結構</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 每條直線有一個無限遠點</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 每個平面有一條無限遠線</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 空間有一個無限遠平面</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1nqIYZuq9NOuPiKptHyV_kcNxCoxDVrKzvhFmuYtW9zs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天幾何練習</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">📊 投影平面的奧秘</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 三條直線分割平面：4個區域 vs 7個區域</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 投影平面的單面性（類似莫比烏斯環）</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 位置幾何 vs 度量幾何的本質差異</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1SE_taTHvtpCrAFy7HUse5EHfqi3gzUGCZ0k-ghKXbW4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天幾何練習</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-category">
+                        <h3>🧠 人智學與靈性科學</h3>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+                            基於史代納GA17《靈性世界的門檻》，探索思維與宇宙的深層連結
+                        </p>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🏝️ 思維作為靈魂生命之流中的小島</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 靈魂對思維的自然信任</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 思維的宇宙本質</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 健康的靈魂生命節奏</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1XO4FibLhKeEasWX3MpEjv27yE81OUjFStmZWA5fhxf8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天GA17討論</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🧘 冥想的四步驟與思維轉化</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 選擇思考→反覆深入→與思考共同生活→產生靈性接觸</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 從「我思維」到「宇宙在我之內思維」</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 觸覺比喻：在黑暗中用觸覺感知靈性世界</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1iI4tDnIP2toIzx74U03sk68GHVBfpFXrJ5gJVvpqlj4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天GA17討論</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌌 現代人的感官麻痺與宇宙連結</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 過強感官印象阻礙宇宙連結感受</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 重新激活內在思想之光</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 靈魂作為宇宙思維展現的舞台</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天宇宙觀點討論</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-category">
+                        <h3>📚 華德福教學智慧</h3>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+                            從整體到部分，讓學生感受宇宙大秩序的教學實踐智慧
+                        </p>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🎯 教學的核心原則</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 從整體到部分：加法教學從12分解開始</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 接受的重要性：學習前先「接受」規則</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 數學的本質：介於靈性藝術與死亡語言之間</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1HeO0SzwLSnd_eIqtqvwGXvP_gj6VBPPCr5SdqDufJMs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天教學實踐討論</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🎨 恰當比喻與心智學延伸</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 使用適當比喻建立理解橋樑</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 月亮球體作為心智學切入點</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 無限概念與「不可見事物」的連結</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1RTp4Y2K435cgEwKLlDrCMSoBOIt0-_1ChX0i1lSJkw8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天教學討論</a>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">✨ 幾何教學的美感場域</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 讓學生突然對數學產生興趣</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 圓錐曲線的整體性：同一形狀的不同顯現</li>
+                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 讓學生感受事物背後的大秩序與普遍規律</li>
+                            </ul>
+                            <a href="https://docs.google.com/document/d/1qqVNu5mGT-wGuV4ux96LoHnJKnG8ZJB0UK00R25eaQ0" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天教學總結</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<!-- Resources Section -->
+            <section id="resources" class="section">
+                <h2>資源下載</h2>
+                
+                <!-- Audio Recordings -->
+                <div class="resource-category" style="margin-bottom: 2rem;">
+                    <h3>🎵 研討會錄音檔案</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">點擊連結可直接播放或下載音檔</p>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <h4 style="color: #1a365d; margin-bottom: 1rem; border-bottom: 2px solid #f39c12; padding-bottom: 0.5rem;">第一天 (7月7日)</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1-33NKpFXIJNvMgspoA5T-iLOqYqiUSoD" target="_blank" rel="noopener" class="download-link">🌞 09:00-10:30 太陽、月亮與行星講座</a>
+                            <a href="https://drive.google.com/file/d/1w0kgIfEdRy6l5D4jBjVYTW20lD-2eKfg" target="_blank" rel="noopener" class="download-link">📐 10:45-12:15 投影幾何練習指導</a>
+                            <a href="https://drive.google.com/file/d/1GFH5sYd8OSeKtB2EExFixbHhpw63AOGh" target="_blank" rel="noopener" class="download-link">📖 13:30-15:00 GA17討論記錄</a>
+                            <a href="https://drive.google.com/file/d/1CfdXEAXkhKzNolL7G4ds4CmdzKGPtH1G" target="_blank" rel="noopener" class="download-link">🏫 15:15-16:00 教學實踐分享</a>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <h4 style="color: #1a365d; margin-bottom: 1rem; border-bottom: 2px solid #f39c12; padding-bottom: 0.5rem;">第二天 (7月8日)</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1XUpMoFs4i2OYLKj_t047cWE6TLynxT97" target="_blank" rel="noopener" class="download-link">🌙 09:00-10:30 人類生活於行星星界講座</a>
+                            <a href="https://drive.google.com/file/d/1GR2MueT5Zp8iZVubW1N802z-eP44cNSJ" target="_blank" rel="noopener" class="download-link">🔺 10:45-12:15 投影幾何練習2</a>
+                            <a href="https://drive.google.com/file/d/1pVqlj350IAgi2ytLXXeTaJhtEN4MzlZf" target="_blank" rel="noopener" class="download-link">📚 13:30-15:00 GA17討論記錄續</a>
+                            <a href="https://drive.google.com/file/d/1YkCyYbQphnMIjmbaZyj9pllRrIg09bUu" target="_blank" rel="noopener" class="download-link">💬 15:15-16:00 討論與分享</a>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4 style="color: #1a365d; margin-bottom: 1rem; border-bottom: 2px solid #f39c12; padding-bottom: 0.5rem;">第三天 (7月9日)</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1ae1d2ls79oP2k5IdYdfy8btjqT00R2Iw" target="_blank" rel="noopener" class="download-link">🌌 09:00-10:30 從天體物理學與人智學觀點看我們的宇宙</a>
+                            <a href="https://drive.google.com/file/d/1009Ue52SEHybvHlMALmtI9HgFDC-59tC" target="_blank" rel="noopener" class="download-link">📐 10:45-12:15 投影幾何練習3</a>
+                            <a href="https://drive.google.com/file/d/1VQFzqGVPEoiuX4f_0YxM5bplTRc3lsGY" target="_blank" rel="noopener" class="download-link">🎓 13:30-16:00 課程總結與華德福教學分享</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Presentation and Materials -->
+                <div class="resource-category" style="margin-bottom: 2rem;">
+                    <h3>📊 簡報與講義資料</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">研討會核心教學簡報與參考講義</p>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <h4 style="color: #1a365d; margin-bottom: 1rem;">📑 核心簡報</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1nIibhmHdgdEJ6wbQBiCqBgUbyy-9IWp4/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                🌌 天文與幾何綜合簡報 (OC_Slides_Yilan2025.pdf)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    太陽月亮韻律、天球座標系統、歲差運動、潮汐現象等完整圖解
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1JA_MecYwy_Asgzhqn3E8vv_wFcj6cyhE/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                🪐 天體圖像集錦 (bilder.pdf)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    太陽系天體、彗星觀測、史代納彗星素描等珍貴圖像資料
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: #1a365d; margin-bottom: 1rem;">📖 教學講義</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1Iy7LkuqQiT8TWCAUVIJYZN_7P4Ei5JAp/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📚 GA17《靈性世界的門檻》第一章 (英文版)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    "Concerning the Reliance which may be placed on Thinking; the Nature of the Thinking Soul; and of Meditation"
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1wWbg3R9sz5xfnq0CFEbftLXaQ-k23haX/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📚 GA26《人智學指導綱領》第24節 (英文版)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    "Man in His Macrocosmic Nature"
+                                </span>
+                            </a>
+                            <a href="https://docs.google.com/document/d/1ZZ6zDOmGKrANJoiPr796fwgnXJ2M9Pzv/edit?usp=drive_link&ouid=104240436882710381404&rtpof=true&sd=true" target="_blank" rel="noopener" class="download-link">
+                                📚 GA17《靈性世界的門檻》第一章 (中文翻譯)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    中文部分GPT翻譯 佳盈校稿
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mathematics Materials -->
+                <div class="resource-category" style="margin-bottom: 2rem;">
+                    <h3>📐 數學教材資源</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">投影幾何、華德福數學教學專業資料</p>
+                    
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                        <div style="display: grid; gap: 0.5rem;">
+                            <a href="https://drive.google.com/file/d/1BNLoYC3cey6IWl1RY9kbop5XsVgr4u8B/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📚 華德福12年級數學主題 第2卷
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    Topics in Mathematics for the 12th grade, volume 2: Developed according to the instructional practice in the Waldorf school
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1hObnSwU_Nb6dWA3XAWDl-ZvCDnDlwjTE/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📚 華德福11年級數學主題
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    Topics in Mathematics for the 11th Grade: Analytical Geometry, Projective Geometry, Spherical Geometry, Sequences and Limits
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1mOBLhQ8N-YtlnZ4GMrcBORcQ43jNY9nb/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📈 曲線與包絡線 (英文版)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    Curves and Envelopes
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1SXaO5hhjPVbqVcz5lSIESI1VqFnCmfOH/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📈 曲線與包絡線 (德文版)
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    Kurven Und Kurvenhüllen
+                                </span>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1_NP7ddTefq5jPynrKZCR5QrAT97OeE45/view?usp=drive_link" target="_blank" rel="noopener" class="download-link">
+                                📐 投影平面練習工作紙
+                                <span style="font-size: 0.85rem; color: #666; display: block; margin-top: 0.25rem;">
+                                    動態幾何變換與無限概念實作練習
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discussion Section -->
+            <section id="discussion" class="section">
+                <h2>討論分享</h2>
+                <div class="comments-container">
+                    <div style="text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 15px; border: 2px solid #f39c12;">
+                        <h3 style="color: #1a365d; margin-bottom: 1rem;">討論功能準備中</h3>
+                        <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                            我們正在建置完整的討論區，包含電子郵件驗證與後台管理功能。<br>
+                            屆時歡迎各位老師分享學習心得與教學經驗。
+                        </p>
+                        <div style="margin-top: 2rem; padding: 1rem; background: rgba(243, 156, 18, 0.1); border-radius: 10px;">
+                            <p style="color: #1a365d; font-weight: bold;">暫時聯絡方式：</p>
+                            <p style="color: #666;">如有任何問題或想法，歡迎透過電子郵件聯繫：<br>
+                            <a href="mailto:it@waldorf.ilc.edu.tw" style="color: #f39c12;">it@waldorf.ilc.edu.tw</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 天文、幾何與人智學研討會 | Dr. Oliver Conradt | 宜蘭縣立慈心華德福教育實驗高級中等學校</p>
+            <p>聯絡信箱：it@waldorf.ilc.edu.tw | 電話：(03) 959-6222</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                本網站內容僅供研討會參與者學習參考使用 | 
+                <a href="mailto:it@waldorf.ilc.edu.tw" style="color: #f39c12;">意見回饋</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // 防止事件冒泡
+                    
+                    // Remove active class from all nav links and sections
+                    navLinks.forEach(nl => nl.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked nav link
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetSection = this.getAttribute('data-section');
+                    document.getElementById(targetSection).classList.add('active');
+                });
+            });
+
+            // Comment system temporarily disabled - will be implemented with backend integration
+
+            // Smooth scrolling for internal links (excluding navigation)
+            document.querySelectorAll('a[href^="#"]:not(.nav-link)').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    // Skip if href is just "#" or empty
+                    if (href === '#' || href === '' || href.length <= 1) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add some interactive elements for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.highlight-card, .resource-category');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Simulate download functionality
+            const downloadLinks = document.querySelectorAll('.download-link');
+            downloadLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    // If it's a real external link (Google Drive/Docs), let it open normally
+                    if (href && href !== '#' && (href.startsWith('https://docs.google.com') || href.startsWith('https://drive.google.com'))) {
+                        return; // Let the browser handle the link
+                    }
+                    // For placeholder links only
+                    if (href === '#' || !href) {
+                        e.preventDefault();
+                        const fileName = this.textContent;
+                        alert(`正在下載：${fileName}\n\n(實際部署時此功能將連接到真實的檔案系統)`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
