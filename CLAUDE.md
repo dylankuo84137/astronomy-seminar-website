@@ -6,12 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a static website for an astronomy seminar (天文、幾何與人智學研討會) featuring Dr. Oliver Conradt. The website documents a 3-day seminar on astronomy, geometry, and anthroposophy held at a Waldorf school in Taiwan.
 
-**Last Updated**: July 10, 2025 - Added CommentBox.io integration and enhanced Waldorf-style design
+**Last Updated**: July 10, 2025 - Restructured for better maintainability: separated CSS and JavaScript into external files
 
 ## Architecture
 
 ### Single-Page Application Structure
-- **Static HTML**: Single `index.html` file with embedded CSS and JavaScript
+- **Static HTML**: `index.html` with clean, semantic markup
+- **External CSS**: `styles.css` containing all styling for better maintainability
+- **External JavaScript**: `script.js` containing all interactive functionality
 - **Client-Side Navigation**: JavaScript-based section switching without page reloads
 - **Responsive Design**: Mobile-first approach with CSS Grid and Flexbox
 
@@ -66,14 +68,14 @@ xdg-open index.html  # Linux
 
 ## Technical Details
 
-### Styling Approach
-- **Embedded CSS**: All styles in `<style>` tags within HTML head
+### Styling Approach (`styles.css`)
+- **External CSS**: All styles in separate stylesheet for better maintainability
 - **Color Scheme**: Waldorf-inspired palette (dark blues #2c3e50, warm gold #d4a574)
 - **Typography**: Playfair Display for headings, Georgia serif for body text
 - **Layout**: CSS Grid for complex layouts, Flexbox for alignment
 - **External Fonts**: Google Fonts integration for Playfair Display
 
-### JavaScript Functionality
+### JavaScript Functionality (`script.js`)
 - **Section Navigation**: Dynamic show/hide of content sections
 - **Event Handling**: Click events for navigation and interactive elements
 - **Smooth Scrolling**: Enhanced UX for internal navigation
@@ -88,10 +90,11 @@ xdg-open index.html  # Linux
 ## Content Editing Guidelines
 
 ### Adding New Content
-1. Locate the appropriate section in `index.html`
-2. Follow existing HTML structure and CSS classes
-3. Update navigation if adding new sections
-4. Test responsiveness across device sizes
+1. **HTML Structure**: Locate the appropriate section in `index.html`
+2. **CSS Styling**: Add new styles to `styles.css` following existing patterns
+3. **JavaScript Functionality**: Add new interactive features to `script.js`
+4. **Navigation**: Update navigation if adding new sections
+5. **Testing**: Test responsiveness across device sizes
 
 ### Resource Links
 - Use Google Drive/Docs for external resources
@@ -99,9 +102,10 @@ xdg-open index.html  # Linux
 - Add `target="_blank" rel="noopener"` for security
 
 ### Styling Consistency
-- Follow existing color scheme and typography
-- Use established CSS classes for cards, buttons, and layouts
-- Maintain consistent spacing and visual hierarchy
+- **CSS Organization**: All styles in `styles.css` with clear section comments
+- **Color Scheme**: Follow established Waldorf-inspired palette
+- **Typography**: Use existing font hierarchy (Playfair Display + Georgia)
+- **Layout**: Maintain consistent spacing and visual hierarchy
 
 ## Third-Party Services
 
