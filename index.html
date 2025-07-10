@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天文、幾何與人智學研討會 - Dr. Oliver Conradt</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- CommentBox.io Script -->
+    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -24,15 +30,17 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header - Minimalist Waldorf Style with Subtle Astronomy Theme */
         header {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 2rem 0;
+            padding: 3.5rem 0;
             position: relative;
             overflow: hidden;
+            border-bottom: 3px solid #d4a574;
         }
 
+        /* Subtle star pattern - minimalist approach */
         header::before {
             content: '';
             position: absolute;
@@ -40,8 +48,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="0.8" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            opacity: 0.3;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><circle cx="80" cy="60" r="1.5" fill="rgba(212,165,116,0.4)"/><circle cx="320" cy="40" r="1.2" fill="rgba(212,165,116,0.3)"/><circle cx="200" cy="140" r="1" fill="rgba(212,165,116,0.35)"/><circle cx="150" cy="30" r="0.8" fill="rgba(212,165,116,0.3)"/></svg>') no-repeat;
+            opacity: 0.7;
         }
 
         .header-content {
@@ -51,34 +59,49 @@
         }
 
         .title {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            color: #f9f6f0;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.1;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: #e6c896;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .date-location {
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            background: rgba(212, 165, 116, 0.2);
+            padding: 0.8rem 1.5rem;
             border-radius: 25px;
             display: inline-block;
+            border: 2px solid rgba(212, 165, 116, 0.4);
+            color: #f2e6d3;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* Navigation */
+        /* Navigation - Matching Banner Style */
         nav {
-            background: #34495e;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border-bottom: 2px solid #d4a574;
         }
 
         .nav-container {
@@ -98,9 +121,11 @@
         }
 
         .nav-link:hover, .nav-link.active {
-            background: #f39c12;
+            background: #d4a574;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         /* Main Content */
@@ -122,20 +147,21 @@
         }
 
         .section h2 {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 2rem;
-            color: #1a365d;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-size: 2.2rem;
+            color: #2c3e50;
             margin-bottom: 1.5rem;
             text-align: center;
             position: relative;
+            font-weight: 600;
         }
 
         .section h2::after {
             content: '';
             display: block;
-            width: 100px;
+            width: 120px;
             height: 3px;
-            background: linear-gradient(to right, #f39c12, #e67e22);
+            background: linear-gradient(to right, #d4a574, #e6c896);
             margin: 0.5rem auto;
             border-radius: 2px;
         }
@@ -159,7 +185,7 @@
             padding: 2rem;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 15px;
-            border: 3px solid #f39c12;
+            border: 3px solid #d4a574;
         }
 
         .cosmic-diagram {
@@ -167,7 +193,7 @@
             max-width: 300px;
             height: 300px;
             margin: 0 auto;
-            background: radial-gradient(circle, #1a365d 0%, #2c5282 100%);
+            background: radial-gradient(circle, #2c3e50 0%, #34495e 100%);
             border-radius: 50%;
             position: relative;
             display: flex;
@@ -178,7 +204,7 @@
         .cosmic-diagram::before {
             content: '✦';
             font-size: 4rem;
-            color: #f39c12;
+            color: #d4a574;
             animation: twinkle 2s ease-in-out infinite alternate;
         }
 
@@ -198,7 +224,7 @@
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             padding: 1.5rem;
             border-radius: 10px;
-            border-left: 5px solid #f39c12;
+            border-left: 5px solid #d4a574;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
@@ -208,8 +234,10 @@
         }
 
         .highlight-card h3 {
-            color: #1a365d;
+            color: #2c3e50;
             margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
         }
 
         /* Speaker Section */
@@ -230,18 +258,31 @@
         .speaker-avatar {
             width: 200px;
             height: 200px;
-            background: #1a365d;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            object-fit: cover;
+            border: 3px solid #d4a574;
+        }
+
+        .speaker-avatar-fallback {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             border-radius: 50%;
             margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            border: 3px solid #d4a574;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .speaker-info h3 {
-            color: #1a365d;
+            color: #2c3e50;
             margin-bottom: 1rem;
         }
 
@@ -257,7 +298,7 @@
 
         .speaker-info li:before {
             content: '◆';
-            color: #f39c12;
+            color: #d4a574;
             margin-right: 0.5rem;
         }
 
@@ -273,7 +314,7 @@
         .day-title {
             font-family: 'Brush Script MT', cursive;
             font-size: 1.8rem;
-            color: #1a365d;
+            color: #2c3e50;
             text-align: center;
             margin-bottom: 2rem;
         }
@@ -302,7 +343,7 @@
 
         .topic-highlight {
             font-weight: bold;
-            color: #1a365d;
+            color: #2c3e50;
         }
 
         /* Resources Section */
@@ -317,12 +358,12 @@
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             padding: 1.5rem;
             border-radius: 10px;
-            border-top: 5px solid #f39c12;
+            border-top: 5px solid #d4a574;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .resource-category h3 {
-            color: #1a365d;
+            color: #2c3e50;
             margin-bottom: 1rem;
         }
 
@@ -338,7 +379,7 @@
         }
 
         .download-link:hover {
-            background: #f39c12;
+            background: #d4a574;
             color: white;
         }
 
@@ -350,90 +391,90 @@
             margin: 2rem 0;
         }
 
-        .comment-form {
+        .guidelines {
             background: white;
             padding: 2rem;
             border-radius: 10px;
             margin-bottom: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #d4a574;
         }
 
-        .form-group {
+        .guidelines h3 {
+            color: #2c3e50;
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1a365d;
-            font-weight: bold;
+        .guidelines ul {
+            list-style: none;
+            padding: 0;
+            padding-left: 1rem;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
+        .guidelines li {
+            padding: 0.5rem 0;
+            color: #2c3e50;
+            position: relative;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #f39c12;
+        .guidelines li:before {
+            content: '•';
+            color: #d4a574;
+            font-size: 1.2rem;
+            position: absolute;
+            left: -1rem;
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .comment {
+        .commentbox {
             background: white;
-            padding: 1.5rem;
             border-radius: 10px;
-            margin-bottom: 1rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
         }
 
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comment-author {
-            font-weight: bold;
-            color: #1a365d;
-        }
-
-        .comment-date {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
+        /* Footer - Matching Banner Style */
         footer {
-            background: #1a365d;
-            color: white;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #f9f6f0;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
             margin-top: 3rem;
+            border-top: 3px solid #d4a574;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle star pattern for footer */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><circle cx="100" cy="50" r="1" fill="rgba(212,165,116,0.3)"/><circle cx="300" cy="120" r="1.2" fill="rgba(212,165,116,0.25)"/><circle cx="50" cy="150" r="0.8" fill="rgba(212,165,116,0.3)"/></svg>') no-repeat;
+            opacity: 0.6;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            color: #f4f1eb;
+        }
+
+        footer a {
+            color: #d4a574;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #f4f1eb;
+            text-decoration: underline;
         }
 
         /* Responsive Design */
@@ -449,8 +490,15 @@
             }
 
             .nav-container {
-                flex-direction: column;
-                gap: 0.5rem;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+                justify-content: center;
+            }
+
+            .nav-link {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.85rem;
+                border-radius: 15px;
             }
 
             .highlights {
@@ -459,6 +507,10 @@
 
             .section {
                 padding: 1rem;
+            }
+
+            nav {
+                padding: 0.5rem 0;
             }
         }
 
@@ -559,7 +611,7 @@
                 <h2>講師介紹</h2>
                 <div class="speaker-profile">
                     <div class="speaker-image">
-                        <div class="speaker-avatar">OC</div>
+                        <div class="speaker-avatar-fallback">OC</div>
                         <h3>Dr. Oliver Conradt</h3>
                         <p>哥德學院數學與天文學部主任</p>
                     </div>
@@ -883,152 +935,196 @@
             <section id="topics" class="section">
                 <h2>主題分類</h2>
                 
-                <div class="resource-grid">
-                    <div class="resource-category">
-                        <h3>🌟 天文學與星智學</h3>
-                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
-                            從科學觀測到靈性洞察，探索宇宙韻律與人類生命的深層連結
-                        </p>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌞 太陽的三種韻律</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 日韻律：太陽日與恆星日的4分鐘差異</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 年韻律：太陽經歷黃道十二星座的循環</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 柏拉圖年：25,920年的歲差運動週期</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1RysyxyFmtakT63su3nFEkfymH_vYl4DqUEfw1-iVQ0A" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天講座記錄</a>
+                <div class="topics-intro" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 1.1rem; color: #2c3e50; line-height: 1.8;">本研討會涵蓋四大主題領域，每個領域都有其獨特的深度與廣度</p>
+                </div>
+                
+                <div class="topics-grid" style="display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+                    <div class="topic-section" style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-left: 6px solid #f39c12;">
+                        <div class="topic-header" style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.8rem; color: #1a365d; margin-bottom: 1rem;">🌟 天文學與星智學</h3>
+                            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                                從科學觀測到靈性洞察，探索宇宙韻律與人類生命的深層連結
+                            </p>
                         </div>
                         
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌙 月亮的五種節奏與星智學</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 朔望月、恆星月、回歸月、交點月、近點月</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 格魯尼恩魚與帕洛羅蠕蟲的月相繁殖週期</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 月亮球體概念：地球生命與月亮影響範圍</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1bdPliqYHeZPgY93qwtmu601y9MFOIxISFLFLmDh9Clg" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天講座記錄</a>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌌 天體物理學與人智學對話</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 太陽的雙重本質：熾熱氣體球 vs 真空狀態</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 彗星現象：太陽驅動的氣化過程</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 人類的宇宙連結：物質身體與以太身</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天講座記錄</a>
-                        </div>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3>📐 投影幾何</h3>
-                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
-                            通過動態幾何探索無限概念，體驗意識心魂的數學表達
-                        </p>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🔺 基礎變換練習</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 等腰三角形的動態變換</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 無限遠點的轉化體驗</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 數學極限的幾何意義</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1WzgZExm9ns-DY4yp2CG8nPNXI2dQ1KnRqQxNYGpnKR4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天幾何練習</a>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌐 無限遠的三層結構</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 每條直線有一個無限遠點</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 每個平面有一條無限遠線</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 空間有一個無限遠平面</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1nqIYZuq9NOuPiKptHyV_kcNxCoxDVrKzvhFmuYtW9zs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天幾何練習</a>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">📊 投影平面的奧秘</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 三條直線分割平面：4個區域 vs 7個區域</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 投影平面的單面性（類似莫比烏斯環）</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 位置幾何 vs 度量幾何的本質差異</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1SE_taTHvtpCrAFy7HUse5EHfqi3gzUGCZ0k-ghKXbW4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天幾何練習</a>
+                        <div class="topic-content" style="display: grid; gap: 2rem;">
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🌞 太陽的三種韻律</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 日韻律：太陽日與恆星日的4分鐘差異</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 年韻律：太陽經歷黃道十二星座的循環</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 柏拉圖年：25,920年的歲差運動週期</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1RysyxyFmtakT63su3nFEkfymH_vYl4DqUEfw1-iVQ0A" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第一天講座記錄</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🌙 月亮的五種節奏與星智學</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 朔望月、恆星月、回歸月、交點月、近點月</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 格魯尼恩魚與帕洛羅蠕蟲的月相繁殖週期</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 月亮球體概念：地球生命與月亮影響範圍</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1bdPliqYHeZPgY93qwtmu601y9MFOIxISFLFLmDh9Clg" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第二天講座記錄</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🌌 天體物理學與人智學對話</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 太陽的雙重本質：熾熱氣體球 vs 真空狀態</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 彗星現象：太陽驅動的氣化過程</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 人類的宇宙連結：物質身體與以太身</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第三天講座記錄</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="resource-category">
-                        <h3>🧠 人智學與靈性科學</h3>
-                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
-                            基於史代納GA17《靈性世界的門檻》，探索思維與宇宙的深層連結
-                        </p>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🏝️ 思維作為靈魂生命之流中的小島</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 靈魂對思維的自然信任</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 思維的宇宙本質</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 健康的靈魂生命節奏</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1XO4FibLhKeEasWX3MpEjv27yE81OUjFStmZWA5fhxf8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天GA17討論</a>
+                    <div class="topic-section" style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-left: 6px solid #2c5282;">
+                        <div class="topic-header" style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.8rem; color: #1a365d; margin-bottom: 1rem;">📐 投影幾何</h3>
+                            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                                通過動態幾何探索無限概念，體驗意識心魂的數學表達
+                            </p>
                         </div>
                         
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🧘 冥想的四步驟與思維轉化</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 選擇思考→反覆深入→與思考共同生活→產生靈性接觸</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 從「我思維」到「宇宙在我之內思維」</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 觸覺比喻：在黑暗中用觸覺感知靈性世界</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1iI4tDnIP2toIzx74U03sk68GHVBfpFXrJ5gJVvpqlj4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天GA17討論</a>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🌌 現代人的感官麻痺與宇宙連結</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 過強感官印象阻礙宇宙連結感受</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 重新激活內在思想之光</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 靈魂作為宇宙思維展現的舞台</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天宇宙觀點討論</a>
+                        <div class="topic-content" style="display: grid; gap: 2rem;">
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🔺 基礎變換練習</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 等腰三角形的動態變換</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 無限遠點的轉化體驗</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 數學極限的幾何意義</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1WzgZExm9ns-DY4yp2CG8nPNXI2dQ1KnRqQxNYGpnKR4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第一天幾何練習</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🌐 無限遠的三層結構</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 每條直線有一個無限遠點</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 每個平面有一條無限遠線</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 空間有一個無限遠平面</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1nqIYZuq9NOuPiKptHyV_kcNxCoxDVrKzvhFmuYtW9zs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第二天幾何練習</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">📊 投影平面的奧秘</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 三條直線分割平面：4個區域 vs 7個區域</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 投影平面的單面性（類似莫比烏斯環）</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 位置幾何 vs 度量幾何的本質差異</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1SE_taTHvtpCrAFy7HUse5EHfqi3gzUGCZ0k-ghKXbW4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第三天幾何練習</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="resource-category">
-                        <h3>📚 華德福教學智慧</h3>
-                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
-                            從整體到部分，讓學生感受宇宙大秩序的教學實踐智慧
-                        </p>
-                        
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🎯 教學的核心原則</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 從整體到部分：加法教學從12分解開始</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 接受的重要性：學習前先「接受」規則</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 數學的本質：介於靈性藝術與死亡語言之間</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1HeO0SzwLSnd_eIqtqvwGXvP_gj6VBPPCr5SdqDufJMs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第一天教學實踐討論</a>
+                    <div class="topic-section" style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-left: 6px solid #34495e;">
+                        <div class="topic-header" style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.8rem; color: #1a365d; margin-bottom: 1rem;">🧠 人智學與靈性科學</h3>
+                            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                                基於史代納GA17《靈性世界的門檻》，探索思維與宇宙的深層連結
+                            </p>
                         </div>
                         
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">🎨 恰當比喻與心智學延伸</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 使用適當比喻建立理解橋樑</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 月亮球體作為心智學切入點</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 無限概念與「不可見事物」的連結</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1RTp4Y2K435cgEwKLlDrCMSoBOIt0-_1ChX0i1lSJkw8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第二天教學討論</a>
+                        <div class="topic-content" style="display: grid; gap: 2rem;">
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🏝️ 思維作為靈魂生命之流中的小島</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 靈魂對思維的自然信任</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 思維的宇宙本質</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 健康的靈魂生命節奏</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1XO4FibLhKeEasWX3MpEjv27yE81OUjFStmZWA5fhxf8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第一天GA17討論</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🧘 冥想的四步驟與思維轉化</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 選擇思考→反覆深入→與思考共同生活→產生靈性接觸</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 從「我思維」到「宇宙在我之內思維」</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 觸覺比喻：在黑暗中用觸覺感知靈性世界</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1iI4tDnIP2toIzx74U03sk68GHVBfpFXrJ5gJVvpqlj4" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第二天GA17討論</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🌌 現代人的感官麻痺與宇宙連結</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 過強感官印象阻礙宇宙連結感受</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 重新激活內在思想之光</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 靈魂作為宇宙思維展現的舞台</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/18JTmm2gRYYA5C0aXF36lIQXcMr-TQOOMceAk0hvqXTU" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第三天宇宙觀點討論</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="topic-section" style="background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-left: 6px solid #e67e22;">
+                        <div class="topic-header" style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.8rem; color: #1a365d; margin-bottom: 1rem;">📚 華德福教學智慧</h3>
+                            <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                                從整體到部分，讓學生感受宇宙大秩序的教學實踐智慧
+                            </p>
                         </div>
                         
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <h4 style="color: #1a365d; margin-bottom: 0.5rem;">✨ 幾何教學的美感場域</h4>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 讓學生突然對數學產生興趣</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 圓錐曲線的整體性：同一形狀的不同顯現</li>
-                                <li style="padding: 0.3rem 0; font-size: 0.9rem;">• 讓學生感受事物背後的大秩序與普遍規律</li>
-                            </ul>
-                            <a href="https://docs.google.com/document/d/1qqVNu5mGT-wGuV4ux96LoHnJKnG8ZJB0UK00R25eaQ0" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.85rem;">📋 第三天教學總結</a>
+                        <div class="topic-content" style="display: grid; gap: 2rem;">
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🎯 教學的核心原則</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 從整體到部分：加法教學從12分解開始</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 接受的重要性：學習前先「接受」規則</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 數學的本質：介於靈性藝術與死亡語言之間</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1HeO0SzwLSnd_eIqtqvwGXvP_gj6VBPPCr5SdqDufJMs" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第一天教學實踐討論</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">🎨 恰當比喻與心智學延伸</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 使用適當比喻建立理解橋樑</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 月亮球體作為心智學切入點</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 無限概念與「不可見事物」的連結</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1RTp4Y2K435cgEwKLlDrCMSoBOIt0-_1ChX0i1lSJkw8" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第二天教學討論</a>
+                                </div>
+                            </div>
+                            
+                            <div class="subtopic-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <h4 style="color: #1a365d; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">✨ 幾何教學的美感場域</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 讓學生突然對數學產生興趣</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 圓錐曲線的整體性：同一形狀的不同顯現</li>
+                                    <li style="padding: 0.5rem 0; font-size: 1rem; color: #2c3e50;">• 讓學生感受事物背後的大秩序與普遍規律</li>
+                                </ul>
+                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #dee2e6;">
+                                    <a href="https://docs.google.com/document/d/1qqVNu5mGT-wGuV4ux96LoHnJKnG8ZJB0UK00R25eaQ0" target="_blank" rel="noopener" style="color: #f39c12; text-decoration: none; font-size: 0.9rem; font-weight: 600;">📋 第三天教學總結</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1167,17 +1263,23 @@
             <section id="discussion" class="section">
                 <h2>討論分享</h2>
                 <div class="comments-container">
-                    <div style="text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 15px; border: 2px solid #f39c12;">
-                        <h3 style="color: #1a365d; margin-bottom: 1rem;">討論功能準備中</h3>
-                        <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">
-                            我們正在建置完整的討論區，包含電子郵件驗證與後台管理功能。<br>
-                            屆時歡迎各位老師分享學習心得與教學經驗。
-                        </p>
-                        <div style="margin-top: 2rem; padding: 1rem; background: rgba(243, 156, 18, 0.1); border-radius: 10px;">
-                            <p style="color: #1a365d; font-weight: bold;">暫時聯絡方式：</p>
-                            <p style="color: #666;">如有任何問題或想法，歡迎透過電子郵件聯繫：<br>
-                            <a href="mailto:it@waldorf.ilc.edu.tw" style="color: #f39c12;">it@waldorf.ilc.edu.tw</a></p>
-                        </div>
+                    <div class="guidelines">
+                        <h3>💡 討論指南</h3>
+                        <ul>
+                            <li>分享您的學習心得和反思</li>
+                            <li>提出關於天文、幾何或人智學的問題</li>
+                            <li>與其他教師交流教學經驗</li>
+                            <li>請保持友善和建設性的討論氛圍</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- CommentBox.io Integration -->
+                    <div class="commentbox" id="commentbox"></div>
+                    
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(243, 156, 18, 0.1); border-radius: 10px; text-align: center;">
+                        <p style="color: #1a365d; font-weight: bold;">技術支援：</p>
+                        <p style="color: #666;">如遇到評論系統問題，歡迎透過電子郵件聯繫：<br>
+                        <a href="mailto:it@waldorf.ilc.edu.tw" style="color: #f39c12;">it@waldorf.ilc.edu.tw</a></p>
                     </div>
                 </div>
             </section>
@@ -1219,7 +1321,7 @@
                 });
             });
 
-            // Comment system temporarily disabled - will be implemented with backend integration
+            // CommentBox.io is initialized separately in the window.addEventListener('load') section
 
             // Smooth scrolling for internal links (excluding navigation)
             document.querySelectorAll('a[href^="#"]:not(.nav-link)').forEach(anchor => {
@@ -1242,6 +1344,13 @@
             });
         });
 
+        // Initialize CommentBox.io after DOM is loaded
+        window.addEventListener('load', function() {
+            if (typeof commentBox === 'function') {
+                commentBox('5713580993282048-proj');
+            }
+        });
+        
         // Add some interactive elements for better UX
         document.addEventListener('DOMContentLoaded', function() {
             // Add hover effects to cards

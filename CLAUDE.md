@@ -6,11 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a static website for an astronomy seminar (天文、幾何與人智學研討會) featuring Dr. Oliver Conradt. The website documents a 3-day seminar on astronomy, geometry, and anthroposophy held at a Waldorf school in Taiwan.
 
+**Last Updated**: July 10, 2025 - Added CommentBox.io integration and enhanced Waldorf-style design
+
 ## Architecture
 
 ### Single-Page Application Structure
 - **Static HTML**: Single `index.html` file with embedded CSS and JavaScript
-- **No Build Process**: Pure HTML/CSS/JavaScript - no build tools, package managers, or dependencies
 - **Client-Side Navigation**: JavaScript-based section switching without page reloads
 - **Responsive Design**: Mobile-first approach with CSS Grid and Flexbox
 
@@ -21,13 +22,14 @@ The website is organized into main sections:
 - **Day 1-3** (`#day1`, `#day2`, `#day3`): Daily schedules with detailed content summaries
 - **Topics** (`#topics`): Categorized subject matter (astronomy, geometry, anthroposophy, teaching)
 - **Resources** (`#resources`): Audio recordings, PDFs, and educational materials
-- **Discussion** (`#discussion`): Placeholder for future comment system
+- **Discussion** (`#discussion`): Live comment system powered by CommentBox.io
 
 ### Key Features
 - **Navigation System**: Sticky navigation with section-based routing
 - **External Links**: Google Drive/Docs integration for resources and meeting notes
 - **Interactive Elements**: Hover effects, smooth scrolling, card animations
 - **Bilingual Content**: Traditional Chinese with English subtitles and academic terms
+- **Comment System**: Integrated CommentBox.io for user discussions and feedback
 
 ## Development Commands
 
@@ -60,20 +62,23 @@ xdg-open index.html  # Linux
 - All content is hardcoded in HTML with inline styling
 - External resources are linked via Google Drive/Docs URLs
 - No database or CMS - content updates require direct HTML editing
+- Comments are managed through CommentBox.io dashboard (external service)
 
 ## Technical Details
 
 ### Styling Approach
 - **Embedded CSS**: All styles in `<style>` tags within HTML head
-- **Color Scheme**: Professional academic palette (dark blues, warm oranges)
-- **Typography**: Georgia serif for academic feel, custom fonts for headings
+- **Color Scheme**: Waldorf-inspired palette (dark blues #2c3e50, warm gold #d4a574)
+- **Typography**: Playfair Display for headings, Georgia serif for body text
 - **Layout**: CSS Grid for complex layouts, Flexbox for alignment
+- **External Fonts**: Google Fonts integration for Playfair Display
 
 ### JavaScript Functionality
 - **Section Navigation**: Dynamic show/hide of content sections
 - **Event Handling**: Click events for navigation and interactive elements
 - **Smooth Scrolling**: Enhanced UX for internal navigation
 - **Link Management**: Special handling for external Google Drive links
+- **CommentBox.io Integration**: Automated comment system initialization with project ID `5713580993282048-proj`
 
 ### Browser Compatibility
 - Modern browsers (Chrome, Firefox, Safari, Edge)
@@ -98,13 +103,22 @@ xdg-open index.html  # Linux
 - Use established CSS classes for cards, buttons, and layouts
 - Maintain consistent spacing and visual hierarchy
 
+## Third-Party Services
+
+### CommentBox.io Integration
+- **Service**: Hosted comment system for static websites
+- **Project ID**: `5713580993282048-proj`
+- **Features**: User comments, moderation, social login support
+- **Management**: Comments managed through CommentBox.io dashboard
+- **Styling**: Custom CSS to match website design theme
+
 ## Future Enhancements
 
 ### Planned Features
-- Backend integration for discussion system
-- User authentication for comments
-- Administrative interface for content management
 - Enhanced search functionality for resources
+- Additional comment moderation features
+- Email notifications for new comments
+- Advanced user authentication options
 
 ### Technical Improvements
 - Potential migration to modern framework (React, Vue, etc.)
